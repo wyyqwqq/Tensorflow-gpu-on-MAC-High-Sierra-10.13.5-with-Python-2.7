@@ -18,8 +18,8 @@ I hope this doc can help you finish your configuration as soon as possible.
 ## Background Environment
 
 ### 1. Install GPU Driver(Nvidia Web Driver-387.10.10.10.35.106)
-  You can download the newest driver from here:[Download GPU Driver](http://www.nvidia.com/download/driverResults.aspx/134834/en-us)<br>
-  the version is 387.10.10.10.35.106. If you install the wrong version, it will probably not recognize your eGPU.<br>
+    You can download the newest driver from here:[Download GPU Driver](http://www.nvidia.com/download/driverResults.aspx/134834/en-us)<br>
+    the version is 387.10.10.10.35.106. If you install the wrong version, it will probably not recognize your eGPU.<br>
 
  
 ### 2. Install CUDA 9.1
