@@ -44,11 +44,11 @@ I hope this doc can help you finish your configuration as soon as possible.
   
 ### 4. Install Xcode Command Line Tool 8.3.2 or 8.2
   You can download Command Line Tool from here:  [Download Command line tool](https://developer.apple.com/download/more/)<br>
-  * Install it<br>
-  * Then switch to it:
+  1. Install it<br>
+  2. Then switch to it:
     
     sudo xcode-select --switch /Library/Developer/CommandLineTools
-  * verify it: 
+  3. verify it: 
     
     clang -v
 
@@ -67,9 +67,18 @@ I hope this doc can help you finish your configuration as soon as possible.
   Run following code in Terminal:<br>
     
     cd /Developer/NVIDIA/CUDA-9.1/samples
-    make -C 1_Utilities/deviceQuery
+    sudo make -C 1_Utilities/deviceQuery
     ./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery
   If it can find your eGPU, then you can start to build your Tensorflow
+  You will see following results:
+    
+    Detected 1 CUDA Capable device(s)
+    
+    Device 0: "GeForce GTX 1060 6GB"
+    CUDA Driver Version / Runtime Version          9.2 / 9.1
+    CUDA Capability Major/Minor version number:    6.1
+    ......
+
 
 
 ## Build Tensorflow
