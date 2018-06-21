@@ -69,7 +69,7 @@ I hope this doc can help you finish your configuration as soon as possible.
     cd /Developer/NVIDIA/CUDA-9.1/samples
     sudo make -C 1_Utilities/deviceQuery
     ./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery
-  If it can find your eGPU, then you can start to build your Tensorflow
+  If it can find your eGPU, then you can start to build your Tensorflow<br>
   You will see following results:
     
     Detected 1 CUDA Capable device(s)
