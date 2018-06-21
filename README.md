@@ -69,7 +69,7 @@ I hope this doc can help you finish your configuration as soon as possible.
     cd /Developer/NVIDIA/CUDA-9.1/samples
     sudo make -C 1_Utilities/deviceQuery
     ./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery
-  If it can find your eGPU, then you can start to build your Tensorflow<br>
+  
   You will see following results:
     
     Detected 1 CUDA Capable device(s)
@@ -78,6 +78,7 @@ I hope this doc can help you finish your configuration as soon as possible.
     CUDA Driver Version / Runtime Version          9.2 / 9.1
     CUDA Capability Major/Minor version number:    6.1
     ......
+  If it can find your eGPU, then you can start to build your Tensorflow<br>
 
 
 
@@ -90,6 +91,7 @@ I hope this doc can help you finish your configuration as soon as possible.
 
 
 ### 8. Install Bazel 0.10
+  [Download Bazel 0.10 here](https://github.com/bazelbuild/bazel/releases/download/0.10.0/bazel-0.10.0-installer-darwin-x86_64.sh)
   Recommend this version, otherwise you may get tons of weird errors during compilation.<br>
   Run following code in Terminal to install:
     
