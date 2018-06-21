@@ -113,10 +113,10 @@ I hope this doc can help you finish your configuration as soon as possible.
   
   
 ### 10. Configuration 
-  Run following code in Terminal:<br>
+  Run following code under current folder in Terminal:<br>
     
-    ./configure<br>
-  You will get following:
+    ./configure
+  You will get following info:
     
     You have bazel 0.10.0 installed:
     
