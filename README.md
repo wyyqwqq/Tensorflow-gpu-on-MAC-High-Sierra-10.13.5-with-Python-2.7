@@ -18,12 +18,12 @@ I hope this doc can help you finish your configuration as soon as possible.
 ## Background Environment
 
 ### 1. Install GPU Driver(Nvidia Web Driver-387.10.10.10.35.106)
-    You can download the newest driver from here:[Download GPU Driver](http://www.nvidia.com/download/driverResults.aspx/134834/en-us)<br>
-    the version is 387.10.10.10.35.106. If you install the wrong version, it will probably not recognize your eGPU.<br>
+  You can download the newest driver from here:  [Download GPU Driver](http://www.nvidia.com/download/driverResults.aspx/134834/en-us)<br>
+  the version is 387.10.10.10.35.106. If you install the wrong version, it will probably not recognize your eGPU.<br>
 
  
 ### 2. Install CUDA 9.1
-  You can download CUDA 9.1 from here:[Download CUDA 9.1](https://developer.nvidia.com/cuda-downloads?target_os=MacOSX&target_arch=x86_64&target_version=1013&target_type=dmglocal)<br>
+  You can download CUDA 9.1 from here:  [Download CUDA 9.1](https://developer.nvidia.com/cuda-downloads?target_os=MacOSX&target_arch=x86_64&target_version=1013&target_type=dmglocal)<br>
   Don't install CUDA version lower than 9.1 if your OSX version >= 10.13.5, otherwise it can not find your eGPU.<br>
   I know that [Tensorflow-gpu](https://www.tensorflow.org/versions/r1.1/install/install_mac) for Mac require you to install CUDA 8.0, but it's not the case for eGPU with High Sierra.<br>
   
@@ -31,11 +31,11 @@ I hope this doc can help you finish your configuration as soon as possible.
 ### 3. Install cuDNN 7.0.5
   You can download cuDNN from here: [Download cuDNN v7.0.5 for CUDA 9.1](https://developer.nvidia.com/rdp/cudnn-archive)<br>
   Then use the following code in Terminal to install it:<br>
-  >tar -xzvf cudnn-9.0-osx-x64-v7.tgz<br>
-  >sudo cp cuda/include/cudnn.h /usr/local/cuda/include<br>
-  >$ sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib<br>
-  >$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*<br>
-  >$ export  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH<br>
+    tar -xzvf cudnn-9.0-osx-x64-v7.tgz<br>
+    sudo cp cuda/include/cudnn.h /usr/local/cuda/include<br>
+    sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib<br>
+    sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*<br>
+    export  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH<br>
   
   
   
@@ -44,25 +44,25 @@ I hope this doc can help you finish your configuration as soon as possible.
   You can download Command Line Tool from here:[Download Command line tool](https://developer.apple.com/download/more/)<br>
   Install it<br>
   Then switch to it: <br>
-  >sudo xcode-select --switch /Library/Developer/CommandLineTools<br>
+    sudo xcode-select --switch /Library/Developer/CommandLineTools<br>
   verify it: <br>
-  >clang -v<br>
+    clang -v<br>
 
 
 ### 5. Setup environment variables
   In Terminal, run following command:<br>
-  >export CUDA_HOME=/usr/local/cuda<br>
-  >export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib <br>
-  >export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH<br>
-  >export PATH=$DYLD_LIBRARY_PATH:$PATH:/Developer/NVIDIA/CUDA-9.1/bin<br>
+    export CUDA_HOME=/usr/local/cuda<br>
+    export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib <br>
+    export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH<br>
+    export PATH=$DYLD_LIBRARY_PATH:$PATH:/Developer/NVIDIA/CUDA-9.1/bin<br>
   or you can add them in to .bash file<br>
 
 
 ### 6. Check your CUDA installation
   Run following code in Terminal:<br>
-  >cd /Developer/NVIDIA/CUDA-9.1/samples<br>
-  >make -C 1_Utilities/deviceQuery<br>
-  >./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery<br>
+    cd /Developer/NVIDIA/CUDA-9.1/samples<br>
+    make -C 1_Utilities/deviceQuery<br>
+    ./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery<br>
   If it can find your eGPU, then you can start to build your Tensorflow<br>
 
 
@@ -70,117 +70,116 @@ I hope this doc can help you finish your configuration as soon as possible.
 
 ### 7. Install Wheel
   Run following code in Terminal:<br>
-  >pip install wheel<br>
+    pip install wheel<br>
 
 
 ### 8. Install Bazel 0.10
   Recommend this version, otherwise you may get tons of weird errors during compilation.<br>
   Run following code in Terminal to install:<br>
-  >chmod 755 bazel-0.10.0-installer-darwin-x86_64.sh<br>
-  >./bazel-0.10.0-installer-darwin-x86_64.sh<br>
+    chmod 755 bazel-0.10.0-installer-darwin-x86_64.sh<br>
+    ./bazel-0.10.0-installer-darwin-x86_64.sh<br>
   
 
 ### 9. Git clone Tensorflow 1.7 to your folder
   `Recommend this version, because 1.8 or higher may cause tons of weird errors during compilation.`<br>
   Run following code in Terminal:<br>
-  >git clone https://github.com/tensorflow/tensorflow<br>
-  >cd tensorflow<br>
-  >git checkout v1.7.0<br>
+    git clone https://github.com/tensorflow/tensorflow<br>
+    cd tensorflow<br>
+    git checkout v1.7.0<br>
   Then download a patch to current folder:<br>
-  >wget https://gist.githubusercontent.com/Willian-Zhang/088e017774536880bd425178b46b8c17/raw/xtensorflow17macos.patch<br>
-  >git apply xtensorflow17macos.patch <br>
+    wget https://gist.githubusercontent.com/Willian-Zhang/088e017774536880bd425178b46b8c17/raw/xtensorflow17macos.patch<br>
+    git apply xtensorflow17macos.patch <br>
   
   
 ### 10. Configuration 
   Run following code in Terminal:<br>
-  >./configure<br>
+    ./configure<br>
   You will get following:<br>
-  You have bazel 0.10.0 installed.
-  Please specify the location of python. [Default is /usr/bin/python]: 
+    You have bazel 0.10.0 installed.
+    Please specify the location of python. [Default is /usr/bin/python]: 
 
+    Found possible Python library paths:
+      /Library/Python/2.7/site-packages
+    Please input the desired Python library path to use.  Default is [/Library/Python/2.7/site-packages]
 
-  Found possible Python library paths:
-    /Library/Python/2.7/site-packages
-  Please input the desired Python library path to use.  Default is [/Library/Python/2.7/site-packages]
+    Do you wish to build TensorFlow with Google Cloud Platform support? [Y/n]: n
+    No Google Cloud Platform support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with Google Cloud Platform support? [Y/n]: n
-  No Google Cloud Platform support will be enabled for TensorFlow.
+    Do you wish to build TensorFlow with Hadoop File System support? [Y/n]: n
+    No Hadoop File System support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with Hadoop File System support? [Y/n]: n
-  No Hadoop File System support will be enabled for TensorFlow.
+    Do you wish to build TensorFlow with Amazon S3 File System support? [Y/n]: n
+    No Amazon S3 File System support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with Amazon S3 File System support? [Y/n]: n
-  No Amazon S3 File System support will be enabled for TensorFlow.
+    Do you wish to build TensorFlow with Apache Kafka Platform support? [y/N]: n
+    No Apache Kafka Platform support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with Apache Kafka Platform support? [y/N]: n
-  No Apache Kafka Platform support will be enabled for TensorFlow.
+    Do you wish to build TensorFlow with XLA JIT support? [y/N]: n
+    No XLA JIT support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with XLA JIT support? [y/N]: n
-  No XLA JIT support will be enabled for TensorFlow.
+    Do you wish to build TensorFlow with GDR support? [y/N]: n
+    No GDR support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with GDR support? [y/N]: n
-  No GDR support will be enabled for TensorFlow.
+    Do you wish to build TensorFlow with VERBS support? [y/N]: n
+    No VERBS support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with VERBS support? [y/N]: n
-  No VERBS support will be enabled for TensorFlow.
+    Do you wish to build TensorFlow with OpenCL SYCL support? [y/N]: n
+    No OpenCL SYCL support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with OpenCL SYCL support? [y/N]: n
-  No OpenCL SYCL support will be enabled for TensorFlow.
+    Do you wish to build TensorFlow with CUDA support? [y/N]: y
+    CUDA support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with CUDA support? [y/N]: y
-  CUDA support will be enabled for TensorFlow.
+    Please specify the CUDA SDK version you want to use, e.g. 7.0. [Leave empty to default to CUDA 9.0]: 9.1
 
-  Please specify the CUDA SDK version you want to use, e.g. 7.0. [Leave empty to default to CUDA 9.0]: 9.1
+    Please specify the location where CUDA 9.1 toolkit is installed. Refer to README.md for more details. [Default is  /usr/local/cuda]: 
 
-  Please specify the location where CUDA 9.1 toolkit is installed. Refer to README.md for more details. [Default is  /usr/local/cuda]: 
+    Please specify the cuDNN version you want to use. [Leave empty to default to cuDNN 7.0]: 
 
-  Please specify the cuDNN version you want to use. [Leave empty to default to cuDNN 7.0]: 
+    Please specify the location where cuDNN 7 library is installed. Refer to README.md for more details. [Default is /usr/local/cuda]:
 
-  Please specify the location where cuDNN 7 library is installed. Refer to README.md for more details. [Default is /usr/local/cuda]:
+    Please specify a list of comma-separated Cuda compute capabilities you want to build with.
+    You can find the compute capability of your device at: https://developer.nvidia.com/cuda-gpus.
+    Please note that each additional compute capability significantly increases your build time and binary size. [Default is: 3.5,5.2]6.1
 
-  Please specify a list of comma-separated Cuda compute capabilities you want to build with.
-  You can find the compute capability of your device at: https://developer.nvidia.com/cuda-gpus.
-  Please note that each additional compute capability significantly increases your build time and binary size. [Default is: 3.5,5.2]6.1
+    Do you want to use clang as CUDA compiler? [y/N]: n
+    nvcc will be used as CUDA compiler.
 
-  Do you want to use clang as CUDA compiler? [y/N]: n
-  nvcc will be used as CUDA compiler.
+    Please specify which gcc should be used by nvcc as the host compiler. [Default is /usr/bin/gcc]: 
 
-  Please specify which gcc should be used by nvcc as the host compiler. [Default is /usr/bin/gcc]: 
+    Do you wish to build TensorFlow with MPI support? [y/N]: n
+    No MPI support will be enabled for TensorFlow.
 
-  Do you wish to build TensorFlow with MPI support? [y/N]: n
-  No MPI support will be enabled for TensorFlow.
+    Please specify optimization flags to use during compilation when bazel option "--config=opt" is specified [Default is -march=native]: 
 
-  Please specify optimization flags to use during compilation when bazel option "--config=opt" is specified [Default is -march=native]: 
+    Would you like to interactively configure ./WORKSPACE for Android builds? [y/N]: n
+    Not configuring the WORKSPACE for Android builds.
 
-  Would you like to interactively configure ./WORKSPACE for Android builds? [y/N]: n
-  Not configuring the WORKSPACE for Android builds.
-
-  Preconfigured Bazel build configs. You can use any of the below by adding "--config=<>" to your build command. See tools/bazel.rc for more details.
-    --config=mkl         	# Build with MKL support.
-    --config=monolithic  	# Config for mostly static monolithic build.
-  Configuration finished
+    Preconfigured Bazel build configs. You can use any of the below by adding "--config=<>" to your build command. See tools/bazel.rc for more details.
+      --config=mkl         	# Build with MKL support.
+      --config=monolithic  	# Config for mostly static monolithic build.
+    Configuration finished
     
   
 ### 11. Compilation Tensorflow
   Run following code in Terminal:<br>
-  >bazel build --config=cuda --config=opt --action_env PATH --action_env LD_LIBRARY_PATH --action_env DYLD_LIBRARY_PATH //tensorflow/tools/pip_package:build_pip_package<br>
+    bazel build --config=cuda --config=opt --action_env PATH --action_env LD_LIBRARY_PATH --action_env DYLD_LIBRARY_PATH //tensorflow/tools/pip_package:build_pip_package<br>
   Takes me 1 hour to finish.<br>
   
   
 ### 12. Build and install Tensorflow wheel file
   Run the following code in Terminal:<br>
-  >bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/<br>
+    bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/<br>
   Install Tensorflow, `if you prefer using virtualenv, then activate your virtualenv and run the following code:`<br>
-  >pip install ~/tensorflow-1.7.0-cp27-cp27m-macosx_10_13_intel.whl (Whataver filename and path you have based on different environment)<br>
+    pip install ~/tensorflow-1.7.0-cp27-cp27m-macosx_10_13_intel.whl (Whataver filename and path you have based on different environment)<br>
   
   
 ### 13. Verify
   `You almost done!!!!!!!!!`<br>
   Open Python in virtualenv, and run following code in Terminal:<br>
-  \>>>import tensorflow as tf<br>
-  \>>>hello = tf.constant('hello')<br>
-  \>>>sess = tf.Session()<br>
-  \>>>print(sess.run(hello))<br>
+    \>>>import tensorflow as tf<br>
+    \>>>hello = tf.constant('hello')<br>
+    \>>>sess = tf.Session()<br>
+    \>>>print(sess.run(hello))<br>
   `If there's no error, then you're done!!!!`
   
   
