@@ -30,8 +30,8 @@ I hope this doc can help you finish your configuration as soon as possible.
   
 ### 3. Install cuDNN 7.0.5
   You can download cuDNN from here: [Download cuDNN v7.0.5 for CUDA 9.1](https://developer.nvidia.com/rdp/cudnn-archive)<br>
-  Then use the following code in Terminal to install it:<br>
-    tar -xzvf cudnn-9.0-osx-x64-v7.tgz<br>
+  Then use the following code in Terminal to install it:
+    tar -xzvf cudnn-9.0-osx-x64-v7.tgz
     sudo cp cuda/include/cudnn.h /usr/local/cuda/include<br>
     sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib<br>
     sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*<br>
