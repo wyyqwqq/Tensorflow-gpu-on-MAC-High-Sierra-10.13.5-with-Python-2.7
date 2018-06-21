@@ -3,10 +3,10 @@ Tensorflow-gpu on Mac High Sierra(10.13.5) configuration with Python2.7
 #### Mac external GPU with CUDA support
 
 I have been working on the configuration for two weeks... the first week was because I forgot to connect the PCI-e wire to my GPU card like this,
-<img src="https://github.com/wyyqwqq/Tensorflow-gpu-on-MAC-High-Sierra-10.13.5-with-Python-2.7/blob/master/IMG_2709.JPG" width="200">
+<img src="https://github.com/wyyqwqq/Tensorflow-gpu-on-MAC-High-Sierra-10.13.5-with-Python-2.7/blob/master/IMG_2709.JPG" width="300">
 
-so if you met some problems like 'disconnect "null"' or "Nvidia Chip Model" in "System report", check your connection and reboot your Mac with eGPU connected. Then the second week was because the compilation of tensorflow.\<br>
-I hope this doc can help you finish your configuration as soon as possible.\<br>
+so if you met some problems like 'disconnect "null"' or "Nvidia Chip Model" in "System report", check your connection and reboot your Mac with eGPU connected. Then the second week was because the compilation of tensorflow.<br>
+I hope this doc can help you finish your configuration as soon as possible.
 
 ## Environment
   `Check your environment before you start`
@@ -18,83 +18,83 @@ I hope this doc can help you finish your configuration as soon as possible.\<br>
 ## Background Environment
 
 ### 1. Install GPU Driver(Nvidia Web Driver-387.10.10.10.35.106)
-  You can download the newest driver from here:[Download GPU Driver](http://www.nvidia.com/download/driverResults.aspx/134834/en-us)
-  the version is 387.10.10.10.35.106. If you install the wrong version, it will probably not recognize your eGPU.\<br>
+  You can download the newest driver from here:[Download GPU Driver](http://www.nvidia.com/download/driverResults.aspx/134834/en-us)<br>
+  the version is 387.10.10.10.35.106. If you install the wrong version, it will probably not recognize your eGPU.<br>
 
  
 ### 2. Install CUDA 9.1
-  You can download CUDA 9.1 from here:[Download CUDA 9.1](https://developer.nvidia.com/cuda-downloads?target_os=MacOSX&target_arch=x86_64&target_version=1013&target_type=dmglocal)
-  Don't install CUDA version lower than 9.1 if your OSX version >= 10.13.5, otherwise it can not find your eGPU.\<br>
-  I know that [Tensorflow-gpu](https://www.tensorflow.org/versions/r1.1/install/install_mac) for Mac require you to install CUDA 8.0, but it's not the case for eGPU with High Sierra.
+  You can download CUDA 9.1 from here:[Download CUDA 9.1](https://developer.nvidia.com/cuda-downloads?target_os=MacOSX&target_arch=x86_64&target_version=1013&target_type=dmglocal)<br>
+  Don't install CUDA version lower than 9.1 if your OSX version >= 10.13.5, otherwise it can not find your eGPU.<br>
+  I know that [Tensorflow-gpu](https://www.tensorflow.org/versions/r1.1/install/install_mac) for Mac require you to install CUDA 8.0, but it's not the case for eGPU with High Sierra.<br>
   
   
 ### 3. Install cuDNN 7.0.5
-  You can download cuDNN from here: [Download cuDNN v7.0.5 for CUDA 9.1](https://developer.nvidia.com/rdp/cudnn-archive)
-  Then use the following code in Terminal to install it:
-  >tar -xzvf cudnn-9.0-osx-x64-v7.tgz
-  >sudo cp cuda/include/cudnn.h /usr/local/cuda/include
-  >$ sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib
-  >$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*
-  >$ export  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
+  You can download cuDNN from here: [Download cuDNN v7.0.5 for CUDA 9.1](https://developer.nvidia.com/rdp/cudnn-archive)<br>
+  Then use the following code in Terminal to install it:<br>
+  >tar -xzvf cudnn-9.0-osx-x64-v7.tgz<br>
+  >sudo cp cuda/include/cudnn.h /usr/local/cuda/include<br>
+  >$ sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib<br>
+  >$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*<br>
+  >$ export  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH<br>
   
   
   
   
 ### 4. Install Xcode Command Line Tool 8.3.2 or 8.2
-  You can download Command Line Tool from here:[Download Command line tool](https://developer.apple.com/download/more/)
-  Install it
-  Then switch to it: 
-  >sudo xcode-select --switch /Library/Developer/CommandLineTools
-  verify it: 
-  >clang -v
+  You can download Command Line Tool from here:[Download Command line tool](https://developer.apple.com/download/more/)<br>
+  Install it<br>
+  Then switch to it: <br>
+  >sudo xcode-select --switch /Library/Developer/CommandLineTools<br>
+  verify it: <br>
+  >clang -v<br>
 
 
 ### 5. Setup environment variables
-  In Terminal, run following command:
-  >export CUDA_HOME=/usr/local/cuda
-  >export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib 
-  >export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
-  >export PATH=$DYLD_LIBRARY_PATH:$PATH:/Developer/NVIDIA/CUDA-9.1/bin
-  or you can add them in to .bash file
+  In Terminal, run following command:<br>
+  >export CUDA_HOME=/usr/local/cuda<br>
+  >export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib <br>
+  >export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH<br>
+  >export PATH=$DYLD_LIBRARY_PATH:$PATH:/Developer/NVIDIA/CUDA-9.1/bin<br>
+  or you can add them in to .bash file<br>
 
 
 ### 6. Check your CUDA installation
-  Run following code in Terminal:
-  >cd /Developer/NVIDIA/CUDA-9.1/samples
-  >make -C 1_Utilities/deviceQuery
-  >./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery
-  If it can find your eGPU, then you can start to build your Tensorflow
+  Run following code in Terminal:<br>
+  >cd /Developer/NVIDIA/CUDA-9.1/samples<br>
+  >make -C 1_Utilities/deviceQuery<br>
+  >./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery<br>
+  If it can find your eGPU, then you can start to build your Tensorflow<br>
 
 
 ## Build Tensorflow
 
 ### 7. Install Wheel
-  Run following code in Terminal:
-  >pip install wheel
+  Run following code in Terminal:<br>
+  >pip install wheel<br>
 
 
 ### 8. Install Bazel 0.10
-  Recommend this version, otherwise you may get tons of weird errors during compilation.
-  Run following code in Terminal to install:
-  >chmod 755 bazel-0.10.0-installer-darwin-x86_64.sh
-  >./bazel-0.10.0-installer-darwin-x86_64.sh
+  Recommend this version, otherwise you may get tons of weird errors during compilation.<br>
+  Run following code in Terminal to install:<br>
+  >chmod 755 bazel-0.10.0-installer-darwin-x86_64.sh<br>
+  >./bazel-0.10.0-installer-darwin-x86_64.sh<br>
   
 
 ### 9. Git clone Tensorflow 1.7 to your folder
-  Recommend this version, because 1.8 or higher may cause tons of weird errors during compilation.
-  Run following code in Terminal:
-  >git clone https://github.com/tensorflow/tensorflow
-  >cd tensorflow
-  >git checkout v1.7.0
-  Then download a patch to current folder:
-  >wget https://gist.githubusercontent.com/Willian-Zhang/088e017774536880bd425178b46b8c17/raw/xtensorflow17macos.patch
-  >git apply xtensorflow17macos.patch 
+  `Recommend this version, because 1.8 or higher may cause tons of weird errors during compilation.`<br>
+  Run following code in Terminal:<br>
+  >git clone https://github.com/tensorflow/tensorflow<br>
+  >cd tensorflow<br>
+  >git checkout v1.7.0<br>
+  Then download a patch to current folder:<br>
+  >wget https://gist.githubusercontent.com/Willian-Zhang/088e017774536880bd425178b46b8c17/raw/xtensorflow17macos.patch<br>
+  >git apply xtensorflow17macos.patch <br>
   
   
 ### 10. Configuration 
-  Run following code in Terminal:
-  >./configure
-  You will get following:
+  Run following code in Terminal:<br>
+  >./configure<br>
+  You will get following:<br>
   You have bazel 0.10.0 installed.
   Please specify the location of python. [Default is /usr/bin/python]: 
 
@@ -162,25 +162,25 @@ I hope this doc can help you finish your configuration as soon as possible.\<br>
     
   
 ### 11. Compilation Tensorflow
-  Run following code in Terminal:
-  >bazel build --config=cuda --config=opt --action_env PATH --action_env LD_LIBRARY_PATH --action_env DYLD_LIBRARY_PATH //tensorflow/tools/pip_package:build_pip_package
-  Takes me 1 hour to finish.
+  Run following code in Terminal:<br>
+  >bazel build --config=cuda --config=opt --action_env PATH --action_env LD_LIBRARY_PATH --action_env DYLD_LIBRARY_PATH //tensorflow/tools/pip_package:build_pip_package<br>
+  Takes me 1 hour to finish.<br>
   
   
 ### 12. Build and install Tensorflow wheel file
-  Run the following code in Terminal:
-  >bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/
-  Install Tensorflow, `if you prefer using virtualenv, then activate your virtualenv and run the following code:`
-  >pip install ~/tensorflow-1.7.0-cp27-cp27m-macosx_10_13_intel.whl (Whataver filename and path you have based on different environment)
+  Run the following code in Terminal:<br>
+  >bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/<br>
+  Install Tensorflow, `if you prefer using virtualenv, then activate your virtualenv and run the following code:`<br>
+  >pip install ~/tensorflow-1.7.0-cp27-cp27m-macosx_10_13_intel.whl (Whataver filename and path you have based on different environment)<br>
   
   
 ### 13. Verify
-  `You almost done!!!!!!!!!`
-  Open Python in virtualenv, and run following code in Terminal:
-  \>>>import tensorflow as tf
-  >>>hello = tf.constant('hello')
-  >>>sess = tf.Session()
-  >>>print(sess.run(hello))
+  `You almost done!!!!!!!!!`<br>
+  Open Python in virtualenv, and run following code in Terminal:<br>
+  \>>>import tensorflow as tf<br>
+  \>>>hello = tf.constant('hello')<br>
+  \>>>sess = tf.Session()<br>
+  \>>>print(sess.run(hello))<br>
   `If there's no error, then you're done!!!!`
   
   
