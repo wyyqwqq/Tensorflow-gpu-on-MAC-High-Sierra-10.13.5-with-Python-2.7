@@ -195,7 +195,7 @@ I hope this doc can help you finish your configuration as soon as possible.
   Run the following code in Terminal:
     
     bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/
-  Install Tensorflow, ***`if you prefer using virtualenv, then activate your virtualenv and run the following code:`***<br>
+  Install Tensorflow, ***if you prefer using virtualenv, then activate your virtualenv and run the following code:***<br>
     
     pip install ~/tensorflow-1.7.0-cp27-cp27m-macosx_10_13_intel.whl (Whataver filename and path you have based on different environment)
   
@@ -204,10 +204,10 @@ I hope this doc can help you finish your configuration as soon as possible.
   `You almost done!!!!!!!!!`<br>
   Open Python in virtualenv, and run following code in Terminal:<br>
     
-    \>>>import tensorflow as tf
-    \>>>hello = tf.constant('hello')
-    \>>>sess = tf.Session()
-    \>>>print(sess.run(hello))
+    >>>import tensorflow as tf
+    >>>hello = tf.constant('hello')
+    >>>sess = tf.Session()
+    >>>print(sess.run(hello))
   
   `If there's no error, then you're done!!!!`
   You can see some info about your eGPU:
