@@ -70,7 +70,7 @@ I hope this doc can help you finish your configuration as soon as possible.
     sudo make -C 1_Utilities/deviceQuery
     ./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery
   
-  You will see following results:
+  You will see following results if your CUDA installation is successful:
     
     Detected 1 CUDA Capable device(s)
     
