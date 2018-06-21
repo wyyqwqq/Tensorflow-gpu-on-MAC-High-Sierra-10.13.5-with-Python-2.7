@@ -91,7 +91,7 @@ I hope this doc can help you finish your configuration as soon as possible.
 
 
 ### 8. Install Bazel 0.10
-  [Download Bazel 0.10 here](https://github.com/bazelbuild/bazel/releases/download/0.10.0/bazel-0.10.0-installer-darwin-x86_64.sh)
+  [Download Bazel 0.10 here](https://github.com/bazelbuild/bazel/releases/download/0.10.0/bazel-0.10.0-installer-darwin-x86_64.sh)<br>
   Recommend this version, otherwise you may get tons of weird errors during compilation.<br>
   Run following code in Terminal to install:
     
