@@ -1,4 +1,4 @@
-Tensorflow-gpu on Mac High Sierra(10.13.5) configuration with Python2.7
+Tensorflow-gpu on Mac High Sierra(10.13.5) installation with Python2.7
 ========
 #### Mac external GPU with CUDA support
 
