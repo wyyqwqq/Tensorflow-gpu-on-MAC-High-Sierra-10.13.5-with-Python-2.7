@@ -60,7 +60,7 @@ I hope this doc can help you finish your configuration as soon as possible.
     export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib
     export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
     export PATH=$DYLD_LIBRARY_PATH:$PATH:/Developer/NVIDIA/CUDA-9.1/bin
-  or you can add them in to .bash file
+  or you can add them into .bash file
 
 
 ### 6. Check your CUDA installation
