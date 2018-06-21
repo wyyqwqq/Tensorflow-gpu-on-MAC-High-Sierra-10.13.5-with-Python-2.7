@@ -184,7 +184,7 @@ I hope this doc can help you finish your configuration as soon as possible.
     Configuration finished
     
   
-### 11. Compilation Tensorflow
+### 11. Compile Tensorflow
   Run following code in Terminal:
     
     bazel build --config=cuda --config=opt --action_env PATH --action_env LD_LIBRARY_PATH --action_env DYLD_LIBRARY_PATH //tensorflow/tools/pip_package:build_pip_package
