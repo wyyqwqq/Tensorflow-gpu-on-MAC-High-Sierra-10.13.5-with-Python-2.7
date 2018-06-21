@@ -18,14 +18,14 @@ I hope this doc can help you finish your configuration as soon as possible.
 ## Background Environment
 
 ### 1. Install GPU Driver(Nvidia Web Driver-387.10.10.10.35.106)
-  You can download the newest driver from here:  \[Download GPU Driver](http://www.nvidia.com/download/driverResults.aspx/134834/en-us)<br>
+  You can download the newest driver from here:  [Download GPU Driver](http://www.nvidia.com/download/driverResults.aspx/134834/en-us)<br>
   the version is 387.10.10.10.35.106. If you install the wrong version, it will probably not recognize your eGPU.<br>
 
  
 ### 2. Install CUDA 9.1
   You can download CUDA 9.1 from here:  [Download CUDA 9.1](https://developer.nvidia.com/cuda-downloads?target_os=MacOSX&target_arch=x86_64&target_version=1013&target_type=dmglocal)<br>
   Don't install CUDA version lower than 9.1 if your OSX version >= 10.13.5, otherwise it can not find your eGPU.<br>
-  I know that [Tensorflow-gpu](https://www.tensorflow.org/versions/r1.1/install/install_mac) for Mac require you to install CUDA 8.0, but it's not the case for eGPU with High Sierra.<br>
+  I know that [Tensorflow-gpu](https://www.tensorflow.org/versions/r1.1/install/install_mac) for Mac require you to install CUDA 8.0, but it's not the case for eGPU with High Sierra.
   
   
 ### 3. Install cuDNN 7.0.5
@@ -33,10 +33,10 @@ I hope this doc can help you finish your configuration as soon as possible.
   Then use the following code in Terminal to install it:
     
     tar -xzvf cudnn-9.0-osx-x64-v7.tgz
-    sudo cp cuda/include/cudnn.h /usr/local/cuda/include<br>
-    sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib<br>
-    sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*<br>
-    export  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH<br>
+    sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+    sudo cp cuda/lib/libcudnn* /usr/local/cuda/lib
+    sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*
+    export  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
   
   
   
@@ -55,19 +55,19 @@ I hope this doc can help you finish your configuration as soon as possible.
 ### 5. Setup environment variables
   In Terminal, run following command:<br>
     
-    export CUDA_HOME=/usr/local/cuda<br>
-    export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib <br>
-    export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH<br>
-    export PATH=$DYLD_LIBRARY_PATH:$PATH:/Developer/NVIDIA/CUDA-9.1/bin<br>
+    export CUDA_HOME=/usr/local/cuda
+    export DYLD_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/cuda/extras/CUPTI/lib
+    export LD_LIBRARY_PATH=$DYLD_LIBRARY_PATH
+    export PATH=$DYLD_LIBRARY_PATH:$PATH:/Developer/NVIDIA/CUDA-9.1/bin
   or you can add them in to .bash file
 
 
 ### 6. Check your CUDA installation
   Run following code in Terminal:<br>
     
-    cd /Developer/NVIDIA/CUDA-9.1/samples<br>
-    make -C 1_Utilities/deviceQuery<br>
-    ./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery<br>
+    cd /Developer/NVIDIA/CUDA-9.1/samples
+    make -C 1_Utilities/deviceQuery
+    ./Developer/NVIDIA/CUDA-9.1/samples/bin/x86_64/darwin/release/deviceQuery
   If it can find your eGPU, then you can start to build your Tensorflow
 
 
@@ -76,28 +76,28 @@ I hope this doc can help you finish your configuration as soon as possible.
 ### 7. Install Wheel
   Run following code in Terminal:<br>
     
-    pip install wheel<br>
+    pip install wheel
 
 
 ### 8. Install Bazel 0.10
   Recommend this version, otherwise you may get tons of weird errors during compilation.<br>
   Run following code in Terminal to install:
     
-    chmod 755 bazel-0.10.0-installer-darwin-x86_64.sh<br>
-    ./bazel-0.10.0-installer-darwin-x86_64.sh<br>
+    chmod 755 bazel-0.10.0-installer-darwin-x86_64.sh
+    ./bazel-0.10.0-installer-darwin-x86_64.sh
   
 
 ### 9. Git clone Tensorflow 1.7 to your folder
   `Recommend this version, because 1.8 or higher may cause tons of weird errors during compilation.`<br>
   Run following code in Terminal:
     
-    git clone https://github.com/tensorflow/tensorflow<br>
-    cd tensorflow<br>
-    git checkout v1.7.0<br>
+    git clone https://github.com/tensorflow/tensorflow
+    cd tensorflow
+    git checkout v1.7.0
   Then download a patch to current folder:
     
-    wget https://gist.githubusercontent.com/Willian-Zhang/088e017774536880bd425178b46b8c17/raw/xtensorflow17macos.patch<br>
-    git apply xtensorflow17macos.patch <br>
+    wget https://gist.githubusercontent.com/Willian-Zhang/088e017774536880bd425178b46b8c17/raw/xtensorflow17macos.patch
+    git apply xtensorflow17macos.patch
   
   
 ### 10. Configuration 
@@ -175,14 +175,14 @@ I hope this doc can help you finish your configuration as soon as possible.
 ### 11. Compilation Tensorflow
   Run following code in Terminal:
     
-    bazel build --config=cuda --config=opt --action_env PATH --action_env LD_LIBRARY_PATH --action_env DYLD_LIBRARY_PATH //tensorflow/tools/pip_package:build_pip_package<br>
+    bazel build --config=cuda --config=opt --action_env PATH --action_env LD_LIBRARY_PATH --action_env DYLD_LIBRARY_PATH //tensorflow/tools/pip_package:build_pip_package
   Takes me 1 hour to finish.
   
   
 ### 12. Build and install Tensorflow wheel file
   Run the following code in Terminal:
     
-    bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/<br>
+    bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/
   Install Tensorflow, `if you prefer using virtualenv, then activate your virtualenv and run the following code:`<br>
     
     pip install ~/tensorflow-1.7.0-cp27-cp27m-macosx_10_13_intel.whl (Whataver filename and path you have based on different environment)
@@ -192,10 +192,10 @@ I hope this doc can help you finish your configuration as soon as possible.
   `You almost done!!!!!!!!!`<br>
   Open Python in virtualenv, and run following code in Terminal:<br>
     
-    \>>>import tensorflow as tf<br>
-    \>>>hello = tf.constant('hello')<br>
-    \>>>sess = tf.Session()<br>
-    \>>>print(sess.run(hello))<br>
+    \>>>import tensorflow as tf
+    \>>>hello = tf.constant('hello')
+    \>>>sess = tf.Session()
+    \>>>print(sess.run(hello))
   
   `If there's no error, then you're done!!!!`
   
