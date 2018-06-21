@@ -12,6 +12,7 @@ I hope this doc can help you finish your configuration as soon as possible.
   `Check your environment before you start`
   * OSX: High Sierra 10.13.5
   * MacBook Pro (13-inch, 2016, Two Thunderbolt 3 ports)
+  * Nvidia GForce 1060 6G
   * Python: 2.7
 
 
@@ -38,16 +39,16 @@ I hope this doc can help you finish your configuration as soon as possible.
     sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*
     export  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
   
-  
+***If you don't need your eGPU for deep learning, then you're good to go!***
   
   
 ### 4. Install Xcode Command Line Tool 8.3.2 or 8.2
-  You can download Command Line Tool from here:[Download Command line tool](https://developer.apple.com/download/more/)<br>
-  Install it<br>
-  Then switch to it:
+  You can download Command Line Tool from here:  [Download Command line tool](https://developer.apple.com/download/more/)<br>
+  * Install it<br>
+  * Then switch to it:
     
     sudo xcode-select --switch /Library/Developer/CommandLineTools
-  verify it: 
+  * verify it: 
     
     clang -v
 
@@ -198,6 +199,9 @@ I hope this doc can help you finish your configuration as soon as possible.
     \>>>print(sess.run(hello))
   
   `If there's no error, then you're done!!!!`
+  You can see some info about your eGPU:
+      
+      Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 880 MB memory) -> physical GPU (device: 0, name: GeForce GTX 1060 6GB, pci bus id: 0000:85:00.0, compute capability: 6.1)
   
   
   
