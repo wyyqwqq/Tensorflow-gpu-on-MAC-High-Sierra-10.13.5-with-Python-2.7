@@ -23,13 +23,13 @@ I hope this doc can help you finish your configuration as soon as possible.
   the version is 387.10.10.10.35.106. If you install the wrong version, it will probably not recognize your eGPU.<br>
 
  
-### 2. Install CUDA 9.1
+### 2. Install CUDA v9.1
   You can download CUDA 9.1 from here:  [Download CUDA 9.1](https://developer.nvidia.com/cuda-downloads?target_os=MacOSX&target_arch=x86_64&target_version=1013&target_type=dmglocal)<br>
   Don't install CUDA version lower than 9.1 if your OSX version >= 10.13.5, otherwise it can not find your eGPU.<br>
   I know that [Tensorflow-gpu](https://www.tensorflow.org/versions/r1.1/install/install_mac) for Mac require you to install CUDA 8.0, but it's not the case for eGPU with High Sierra.
   
   
-### 3. Install cuDNN 7.0.5
+### 3. Install cuDNN v7.0.5
   You can download cuDNN from here: [Download cuDNN v7.0.5 for CUDA 9.1](https://developer.nvidia.com/rdp/cudnn-archive)<br>
   Then use the following code in Terminal to install it:
     
