@@ -39,7 +39,7 @@ I hope this doc can help you finish your configuration as soon as possible.
     sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib/libcudnn*
     export  DYLD_LIBRARY_PATH=/usr/local/cuda/lib:$DYLD_LIBRARY_PATH
   
-***If you don't need your eGPU for deep learning, you're good to go!***
+***If you don't need your eGPU work for deep learning, you're good to go!***
   
   
 ### 4. Install Xcode Command Line Tool 8.3.2 or 8.2
