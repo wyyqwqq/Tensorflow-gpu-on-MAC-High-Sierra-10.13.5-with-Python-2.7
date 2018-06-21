@@ -3,7 +3,7 @@ Tensorflow-gpu on Mac High Sierra(10.13.5) configuration with Python2.7
 #### Mac external GPU with CUDA support
 
 I have been working on the configuration for two weeks... the first week was because I forgot to connect the PCI-e wire to my GPU card like this,
-![](https://github.com/wyyqwqq/Tensorflow-gpu-on-MAC-High-Sierra-10.13.5-with-Python-2.7/blob/master/IMG_2709.JPG | width=200)
+![](https://github.com/wyyqwqq/Tensorflow-gpu-on-MAC-High-Sierra-10.13.5-with-Python-2.7/blob/master/IMG_2709.JPG =200x200)
 
 so if you met some problems like 'disconnect "null"' or "Nvidia Chip Model" in "System report", check your connection and reboot your Mac with eGPU connected. Then the second week was because the compilation of tensorflow.\<br>
 I hope this doc can help you finish your configuration as soon as possible.\<br>
